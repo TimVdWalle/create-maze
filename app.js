@@ -1,22 +1,22 @@
 /*********************************************************
- * 
+ *
  * INCLUDES / REQUIRES
- * 
+ *
 *********************************************************/
 var UnionFind = require('union-find-js');
 
 /*********************************************************
- * 
+ *
  * CONFIG
- * 
+ *
 *********************************************************/
- var mazeSize = 10;
+ var mazeSize = 30;
 
 
 /*********************************************************
- * 
+ *
  * CONSTANTS
- * 
+ *
 *********************************************************/
  var codeBoth   = "─┼"      // both
  var codeLeft   = " ┼"      // right
@@ -32,9 +32,9 @@ var UnionFind = require('union-find-js');
 
 
  /*********************************************************
- * 
+ *
  * MAIN
- * 
+ *
 *********************************************************/
 console.log('Standalone app to create maze')
 
@@ -49,14 +49,14 @@ console.log("")
 
 
 /*********************************************************
- * 
+ *
  * FUNCTIONS
- * 
+ *
 *********************************************************/
-function removeWalls(maze, mazeSize){ 
+function removeWalls(maze, mazeSize){
     uf = new UnionFind(mazeSize * mazeSize);
 
-    // een aantal muren wegdoen in 1 keer, 
+    // een aantal muren wegdoen in 1 keer,
     // daarna checken of er een pad is van begin tot eind
 
     lastPos = calculateUnion(mazeSize-1, mazeSize-1, mazeSize)
@@ -67,7 +67,7 @@ function removeWalls(maze, mazeSize){
         debug(labelFirst + " + " + labelLast)
         displayMaze(maze, mazeSize)
 
-        for(i = 0; i < mazeSize; i++){
+        for(i = 0; i < mazeSize * 3; i++){
             var row = randomIntInc(0, mazeSize-1)
             var col = randomIntInc(0, mazeSize-1)
             var removeType = randomIntInc(1, 2)
@@ -82,7 +82,7 @@ function removeWalls(maze, mazeSize){
 
     debug(labelFirst + " + " + labelLast)
     displayMaze(maze, mazeSize)
-    
+
 
     //debug(label + " + " + label2)
 
@@ -165,9 +165,9 @@ function calculateUnion(row, col, mazeSize){
 
 
  /*********************************************************
- * 
+ *
  * HELPER FUNCTIONS
- * 
+ *
 *********************************************************/
 function createFullMaze(mazeSize){
     maze = createArray(mazeSize, mazeSize);
@@ -265,7 +265,7 @@ function tests(){
 
     removeWall(maze, 1, 0, removeTypeBottom)
     removeWall(maze, 0, 0, removeTypeBottom)
-    
+
 
     unionPos = calculateUnion(5, 5, mazeSize)
     unionPos2 = calculateUnion(8, 5, mazeSize)
